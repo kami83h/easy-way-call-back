@@ -33,6 +33,8 @@ public class devBootstrap implements ApplicationListener<ContextRefreshedEvent> 
     }
 
     private void initData() {
+        companyRepository.deleteAll();
+        authorRepository.deleteAll();
 
         Author kami = new Author("Kami", "Hassanzadeh");
 
