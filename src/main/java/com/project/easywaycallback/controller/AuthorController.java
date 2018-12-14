@@ -1,7 +1,6 @@
 package com.project.easywaycallback.controller;
 
 import com.project.easywaycallback.model.Author;
-import com.project.easywaycallback.model.Company;
 import com.project.easywaycallback.repository.AuthorRepository;
 import com.project.easywaycallback.repository.CompanyRepository;
 import org.springframework.stereotype.Controller;
@@ -23,13 +22,13 @@ public class AuthorController {
     }
 
     @GetMapping(value = {"/", "/index"})
-    public String getMessage(Model model){
+    public String getMessage(Model model) {
 
-        for(Author author: authorRepository.findAll()){
+        for (Author author : authorRepository.findAll()) {
             System.out.println(author);
         }
 
-        model.addAttribute("companys", companyRepository.findAll());
+        model.addAttribute("companies", companyRepository.findAll());
         return "index";
     }
 }

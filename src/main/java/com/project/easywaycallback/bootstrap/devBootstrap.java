@@ -10,11 +10,6 @@ import org.springframework.context.ApplicationListener;
 import org.springframework.context.event.ContextRefreshedEvent;
 import org.springframework.stereotype.Component;
 
-import java.util.ArrayList;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Set;
-
 /**
  * Create by Kami Hassanzadeh on 2018-12-10.
  */
@@ -39,10 +34,10 @@ public class devBootstrap implements ApplicationListener<ContextRefreshedEvent> 
 
     private void initData() {
 
-        Author kami = new Author("Kami","Hassanzadeh");
+        Author kami = new Author("Kami", "Hassanzadeh");
 
-        Company seb = new Company("SEB","0771365365");
-        Company swedbank = new Company("Swedbank","077111111");
+        Company seb = new Company("SEB", "0771365365");
+        Company swedbank = new Company("Swedbank", "077111111");
 
         authorRepository.save(kami);
 

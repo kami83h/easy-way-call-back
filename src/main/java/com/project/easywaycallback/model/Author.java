@@ -4,7 +4,7 @@ import lombok.*;
 
 import javax.persistence.*;
 import java.io.Serializable;
-import java.util.*;
+import java.util.Objects;
 
 /**
  * Create by Kami Hassanzadeh on 2018-12-10.
@@ -19,7 +19,7 @@ public class Author implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    @Column(name="author_id")
+    @Column(name = "author_id")
     private Long id;
     private String firstName;
     private String lastName;
