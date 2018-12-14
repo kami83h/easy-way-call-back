@@ -1,8 +1,9 @@
 package com.project.easywaycallback.controller;
 
-import com.project.easywaycallback.service.AuthorService;
-import com.project.easywaycallback.service.CompanyService;
-import org.springframework.beans.factory.annotation.Autowired;
+import com.project.easywaycallback.model.Author;
+import com.project.easywaycallback.model.Company;
+import com.project.easywaycallback.repository.AuthorRepository;
+import com.project.easywaycallback.repository.CompanyRepository;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -13,21 +14,21 @@ import org.springframework.web.bind.annotation.GetMapping;
 @Controller
 public class AuthorController {
 
-    @Autowired
-    private CompanyService companyRepository;
-    @Autowired
-    private AuthorService authorService;
+    private CompanyRepository companyRepository;
+    private AuthorRepository authorRepository;
 
-
-    public AuthorController(CompanyService companyRepository, AuthorService authorService) {
+    public AuthorController(CompanyRepository companyRepository, AuthorRepository authorRepository) {
         this.companyRepository = companyRepository;
-        this.authorService = authorService;
+        this.authorRepository = authorRepository;
     }
 
     @GetMapping(value = {"/", "/index"})
     public String getMessage(Model model){
 
-        System.out.println("AuthorList : " +authorService.findAll());
+        for(Author author: authorRepository.findAll()){
+            System.out.println(author);
+        }
+
         model.addAttribute("companys", companyRepository.findAll());
         return "index";
     }

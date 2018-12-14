@@ -1,24 +1,23 @@
 package com.project.easywaycallback.model;
 
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
-import lombok.ToString;
+import lombok.*;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
+import java.io.Serializable;
+import java.util.HashSet;
+import java.util.Objects;
+import java.util.Set;
 
 /**
  * Create by Kami Hassanzadeh on 2018-12-10.
  */
 @Entity
 @NoArgsConstructor
-@ToString
+@AllArgsConstructor
 @Setter
 @Getter
-public class Company {
+@ToString
+public class Company implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -26,8 +25,35 @@ public class Company {
     private String companyName;
     private String companyPhoneNumber;
 
+//    @ManyToMany
+//    @JoinTable(name = "author_company", joinColumns = @JoinColumn(name = "company_id"),
+//            inverseJoinColumns = @JoinColumn(name = "author_id"))
+//    private Set<Author> authors = new HashSet<>();
+
+//    @ManyToMany(fetch = FetchType.LAZY,
+//            cascade = {
+//                    CascadeType.PERSIST,
+//                    CascadeType.MERGE
+//            },
+//            mappedBy = "companies")
+//    private Set<Author> authors = new HashSet<>();
+
     public Company(String companyName, String companyPhoneNumber) {
         this.companyName = companyName;
         this.companyPhoneNumber = companyPhoneNumber;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Company company = (Company) o;
+        return Objects.equals(id, company.id);
+    }
+
+    @Override
+    public int hashCode() {
+
+        return Objects.hash(id);
     }
 }

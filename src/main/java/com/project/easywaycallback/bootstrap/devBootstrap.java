@@ -3,11 +3,17 @@ package com.project.easywaycallback.bootstrap;
 
 import com.project.easywaycallback.model.Author;
 import com.project.easywaycallback.model.Company;
-import com.project.easywaycallback.service.AuthorService;
-import com.project.easywaycallback.service.CompanyService;
+import com.project.easywaycallback.repository.AuthorRepository;
+import com.project.easywaycallback.repository.CompanyRepository;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationListener;
 import org.springframework.context.event.ContextRefreshedEvent;
 import org.springframework.stereotype.Component;
+
+import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Set;
 
 /**
  * Create by Kami Hassanzadeh on 2018-12-10.
@@ -15,12 +21,15 @@ import org.springframework.stereotype.Component;
 @Component
 public class devBootstrap implements ApplicationListener<ContextRefreshedEvent> {
 
-    private CompanyService companyRepository;
-    private AuthorService authorService;
+    @Autowired
+    private CompanyRepository companyRepository;
 
-    public devBootstrap(CompanyService companyRepository, AuthorService authorService) {
+    @Autowired
+    private AuthorRepository authorRepository;
+
+    public devBootstrap(CompanyRepository companyRepository, AuthorRepository authorRepository) {
         this.companyRepository = companyRepository;
-        this.authorService = authorService;
+        this.authorRepository = authorRepository;
     }
 
     @Override
@@ -29,13 +38,16 @@ public class devBootstrap implements ApplicationListener<ContextRefreshedEvent> 
     }
 
     private void initData() {
-        Author eric = new Author("Eric","Sandburg");
-        Company company = new Company("SEB","0771365365");
 
-//        eric.getCompany().add(company);
-//        company.getAuthors().add(eric);
-//
-        companyRepository.save(company);
-        authorService.save(eric);
+        Author kami = new Author("Kami","Hassanzadeh");
+
+        Company seb = new Company("SEB","0771365365");
+        Company swedbank = new Company("Swedbank","077111111");
+
+        authorRepository.save(kami);
+
+        companyRepository.save(seb);
+        companyRepository.save(swedbank);
+
     }
 }
