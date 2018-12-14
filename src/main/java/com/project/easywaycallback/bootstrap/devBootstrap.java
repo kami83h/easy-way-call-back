@@ -36,13 +36,15 @@ public class devBootstrap implements ApplicationListener<ContextRefreshedEvent> 
 
         Author kami = new Author("Kami", "Hassanzadeh");
 
-        Company seb = new Company("SEB", "0771365365");
-        Company swedbank = new Company("Swedbank", "077111111");
+        Company seb = new Company("SEB", "08123");
+        Company swedbank = new Company("Swedbank", "12345");
+        Company nordea = new Company("Nordea", "8888888");
 
         authorRepository.save(kami);
 
         companyRepository.save(seb);
         companyRepository.save(swedbank);
+        companyRepository.save(nordea);
 
     }
 }
